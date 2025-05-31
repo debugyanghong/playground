@@ -1,3 +1,15 @@
 body {
   color: red;
 }
+
+h1,
+p {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 80px;
+}
+
+section 1 {
+  background-color: linear-gradient(to right, #fd9346, #a8c0ff);
+}
