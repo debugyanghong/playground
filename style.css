@@ -1,15 +1,38 @@
 body {
-  color: red;
 }
 
-h1,
-p {
-  margin-top: 100px;
-  margin-bottom: 100px;
-  margin-right: 150px;
-  margin-left: 80px;
+.box {
+  text-align: center;
+  border: 5px solid black;
+  padding-top: 150px;
+  width: 40%;
+  height: 180px;
+  border-radius: 10%;
 }
 
-section 1 {
-  background-color: linear-gradient(to right, #fd9346, #a8c0ff);
+#red {
+  background-color: red;
+}
+
+#blue {
+  background-color: blue;
+}
+
+#yellow {
+  background-color: yellow;
+  margin-top: 350px;
+}
+
+.container {
+  display: flex;
+}
+
+h1 {
+  color: black;
+  margin-left: 50%;
+}
+
+h3 {
+  color: black;
+  margin-left: 50%;
 }
