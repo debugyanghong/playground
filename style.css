@@ -1,11 +1,11 @@
-body {
+/* body {
 }
 
 .box {
   text-align: center;
   border: 5px solid black;
   padding-top: 150px;
-  width: 40%;
+  width: 400px;
   height: 180px;
   border-radius: 10%;
 }
@@ -35,4 +35,80 @@ h1 {
 h3 {
   color: black;
   margin-left: 50%;
+}
+*/
+
+section {
+  background-color: gray;
+  padding-left: 50%;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #a8c0ff;
+  font-family: "Comfortaa", cursive;
+  color: #fff;
+  user-select: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: points;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+section {
+  background: #a8c0ff;
+  background: -webkit-linear-gradient(to right, #3f2b96, #a8c0ff);
+  background: linear-gradient(to right, #3f2b96, #a8c0ff);
+  padding-top: 80px;
+  overflow-y: hidden;
+}
+
+main {
+  background: rgba(217, 214, 228, 0.12);
+  border-radius: 10px;
+  padding: 5px 20px 50px;
+  width: 95%;
+  max-width: 500px;
+  margin: 0 auto 214px;
+}
+
+.text-container {
+  text-align: center;
+}
+
+.quiz-options {
+  margin: 60px 0;
+}
+
+[type="radio"] {
+  border: 0;
+  height: 0.0625rem;
+  width: 0.0625rem;
+  position: absolute;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  background: rgba(255, 5, 5, 0.72);
+  margin-bottom: 15px;
+  padding: 6px 0;
+  position: relative;
+  width: 100%;
+  color: #000;
 }
