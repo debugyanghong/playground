@@ -1,114 +1,108 @@
-/* body {
-}
-
-.box {
-  text-align: center;
-  border: 5px solid black;
-  padding-top: 150px;
-  width: 400px;
-  height: 180px;
-  border-radius: 10%;
-}
-
-#red {
-  background-color: red;
-}
-
-#blue {
-  background-color: blue;
-}
-
-#yellow {
-  background-color: yellow;
-  margin-top: 350px;
-}
-
-.container {
-  display: flex;
-}
-
-h1 {
-  color: black;
-  margin-left: 50%;
-}
-
-h3 {
-  color: black;
-  margin-left: 50%;
-}
-*/
-
-section {
-  background-color: gray;
-  padding-left: 50%;
-}
-
-html {
+* {
   box-sizing: border-box;
+  font-family: "Arial", sans-serif;
 }
 
 html,
 body {
-  overflow: hidden;
-  position: relative;
+  width: 100%;
   height: 100%;
+  background-color: #2e2e3a;
+  color: white;
 }
 
 body {
-  background: #a8c0ff;
-  font-family: "Comfortaa", cursive;
-  color: #fff;
-  user-select: none;
-  margin: 0;
-  padding: 0;
-  counter-reset: points;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-section {
-  background: #a8c0ff;
-  background: -webkit-linear-gradient(to right, #3f2b96, #a8c0ff);
-  background: linear-gradient(to right, #3f2b96, #a8c0ff);
-  padding-top: 80px;
-  overflow-y: hidden;
+.section-1 {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 main {
-  background: rgba(217, 214, 228, 0.12);
-  border-radius: 10px;
-  padding: 5px 20px 50px;
-  width: 95%;
-  max-width: 500px;
-  margin: 0 auto 214px;
+  background-color: #3b3b4f;
+  border-radius: 16px;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .text-container {
   text-align: center;
+  margin-bottom: 20px;
+}
+
+.text-container h3 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.text-container p {
+  font-size: 22px;
+}
+
+form {
+  width: 100%;
 }
 
 .quiz-options {
-  margin: 60px 0;
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  padding: 0 10%;
 }
 
-[type="radio"] {
-  border: 0;
-  height: 0.0625rem;
-  width: 0.0625rem;
-  position: absolute;
+.input-radio {
+  display: none;
 }
 
-label {
+.radio-label {
   display: flex;
   align-items: center;
-  border-radius: 5px;
-  background: rgba(255, 5, 5, 0.72);
-  margin-bottom: 15px;
-  padding: 6px 0;
-  position: relative;
+  justify-content: space-between;
+  background-color: #4a4a6a;
+  padding: 20px 25px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color;
+  border: 2px solid transparent;
   width: 100%;
+}
+
+.radio-label:hover {
+  background-color: #5c5c8a;
+  transition: width 0.3s;
+  width: 110%;
+}
+
+.input-radio:checked + .radio-label {
+  background-color: #00c2ff;
   color: #000;
+  border: 2px solid #ffffff;
+}
+
+.alphabet {
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 50%;
+  font-weight: bold;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
 }
