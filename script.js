@@ -27,3 +27,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+function correct() {
+  const soundEffect = new Audio("/trumpet.mp3");
+  if (soundEffect) {
+    soundEffect.play().catch((error) => {
+      console.error("Error playing sound effect:", error);
+    });
+  } else {
+    console.error("Sound effect element not found.");
+  }
+}
+
+function wrong() {
+  const soundEffect = new Audio("/failer.mp3");
+  if (soundEffect) {
+    soundEffect.play().catch((error) => {
+      console.error("Error playing sound effect:", error);
+    });
+  } else {
+    console.error("Sound effect element not found.");
+  }
+}

@@ -12,6 +12,11 @@
   <style></style>
   <script src="script.js"></script>
   <body>
+    <audio id="mySoundEffect">
+      <source src="sound_effect.mp3" type="audio/mpeg" />
+      <source src="sound_effect.ogg" type="audio/ogg" />
+      Your browser does not support the audio element.
+    </audio>
     <section class="section-1" id="section-1">
       <main>
         <div class="text-container">
@@ -26,7 +31,7 @@
               class="input-radio one-a"
               id="one-a"
               name="yes-1"
-              required
+              onclick="wrong()"
             />
             <label class="radio-label" for="one-a">
               <span class="alphabet">A</span>
@@ -37,6 +42,7 @@
               class="input-radio one-b"
               id="one-b"
               name="yes-1"
+              onclick="wrong()"
             />
             <label class="radio-label" for="one-b">
               <span class="alphabet">B</span>
@@ -47,6 +53,7 @@
               class="input-radio one-c"
               id="one-c"
               name="yes-1"
+              onclick="wrong()"
             />
             <label class="radio-label" for="one-c">
               <span class="alphabet">C</span>
@@ -57,6 +64,7 @@
               class="input-radio one-d"
               id="one-d"
               name="yes-1"
+              onclick="correct()"
             />
             <label class="radio-label" for="one-d">
               <span class="alphabet">D</span>
