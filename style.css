@@ -82,16 +82,10 @@ form {
   width: 100%;
 }
 
-.radio-label:hover {
+.input-radio:not(:disabled) + .radio-label:hover {
   background-color: #5c5c8a;
   transition: width 0.3s;
   width: 110%;
-}
-
-.input-radio:checked + .radio-label {
-  background-color: #00c2ff;
-  color: #000;
-  border: 2px solid #ffffff;
 }
 
 .alphabet {
@@ -105,4 +99,24 @@ form {
   align-items: center;
   justify-content: center;
   margin-right: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  display: none;
+  margin-left: 650px;
+}
+
+.correct-option {
+  background-color: green;
+  color: white;
+  border: 2px solid white;
+}
+
+.wrong-option {
+  background-color: red;
+  color: white;
+  border: 2px solid white;
 }
