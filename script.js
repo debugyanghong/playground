@@ -1,15 +1,5 @@
 const questions = [
   {
-    question: "What does CSS stand for?",
-    options: [
-      "Creativityyyy Standard Starter",
-      "Canvas Style Standard",
-      "Caption Spill Sheet",
-      "Cascading Style Sheets",
-    ],
-    correctIndex: 3,
-  },
-  {
     question: "What does HTML stand for?",
     options: [
       "Hyperlinks and Text Markup Language",
@@ -19,26 +9,42 @@ const questions = [
     ],
     correctIndex: 2,
   },
+  {
+    question: "What does CSS stand for?",
+    options: [
+      "Creativity Standard Starter",
+      "Canvas Style Standard",
+      "Caption Spill Sheet",
+      "Cascading Style Sheets",
+    ],
+    correctIndex: 3,
+  },
   // Add more questions here
 ];
+let currentQuestionIndex = 0; // Start with the first question
+
+function displayQuestion(index) {
+  const question = questions[index];
+  document.querySelector(".text-container p:last-child").textContent =
+    question.question;
+  question.options.forEach((option, optionIndex) => {
+    document.getElementById(`option${optionIndex + 1}`).textContent = option;
+  });
+  // Reset radio buttons and labels here if needed
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+  displayQuestion(currentQuestionIndex);
+
   const options = document.querySelectorAll(".input-radio");
   const labels = document.querySelectorAll(".radio-label");
 
-  questions.forEach((question, index) => {
-    question.options.forEach((option, optionIndex) => {
-      document.getElementById(`option${optionIndex + 1}`).textContent = option;
-    });
-  });
-
   options.forEach((option, optionIdx) => {
     option.addEventListener("click", function () {
-      // Disable all radio buttons
       options.forEach((opt) => {
         opt.disabled = true;
       });
-      // Enable the clicked radio button
-      const currentQuestion = questions[0]; // Assuming only first question for now
+      const currentQuestion = questions[currentQuestionIndex];
       const correctIdx = currentQuestion.correctIndex;
       labels.forEach((label, labelIdx) => {
         const input = document.getElementById(label.getAttribute("for"));

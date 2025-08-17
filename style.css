@@ -120,3 +120,14 @@ form {
   color: white;
   border: 2px solid white;
 }
+
+.next-button {
+  background-color: #4a4a6a;
+  color: white;
+  padding: 10px 20px;
+  margin-left: 700px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
