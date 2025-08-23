@@ -19,6 +19,21 @@ const questions = [
     ],
     correctIndex: 3,
   },
+  {
+    question: "In which country did the cheese Emmental originate?",
+    options: ["Brazil", "France", "Switzerland", "Germany"],
+    correctIndex: 2,
+  },
+  {
+    question: "What is the capital of Australia?",
+    options: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+    correctIndex: 2,
+  },
+  {
+    question: "Which planet is known as the Red Planet?",
+    options: ["Earth", "Mars", "Jupiter", "Venus"],
+    correctIndex: 1,
+  },
 ];
 let currentQuestionIndex = 0;
 
