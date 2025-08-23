@@ -19,18 +19,25 @@ const questions = [
     ],
     correctIndex: 3,
   },
-  // Add more questions here
 ];
-let currentQuestionIndex = 0; // Start with the first question
+let currentQuestionIndex = 0;
 
 function displayQuestion(index) {
   const question = questions[index];
-  document.querySelector(".text-container p:last-child").textContent =
+
+  // update question counter
+  document.querySelector(
+    ".text-container p:first-of-type"
+  ).textContent = `QUESTION ${index + 1} OF ${questions.length}`;
+
+  // update question text
+  document.querySelector(".text-container p:last-of-type").textContent =
     question.question;
+
+  // update options
   question.options.forEach((option, optionIndex) => {
     document.getElementById(`option${optionIndex + 1}`).textContent = option;
   });
-  // Reset radio buttons and labels here if needed
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -77,5 +84,32 @@ function wrong() {
     });
   } else {
     console.error("Sound effect element not found.");
+  }
+}
+
+document.getElementById("next-btn").addEventListener("click", function (e) {
+  e.preventDefault();
+  nextQuestion();
+});
+
+function nextQuestion() {
+  if (currentQuestionIndex < questions.length - 1) {
+    currentQuestionIndex++;
+    displayQuestion(currentQuestionIndex);
+
+    // reset options
+    const options = document.querySelectorAll(".input-radio");
+    const labels = document.querySelectorAll(".radio-label");
+
+    options.forEach((opt) => {
+      opt.checked = false;
+      opt.disabled = false;
+    });
+
+    labels.forEach((label) => {
+      label.classList.remove("correct-option", "wrong-option");
+    });
+  } else {
+    alert("Quiz finished!");
   }
 }
