@@ -104,9 +104,9 @@ form {
 .button-container {
   display: flex;
   justify-content: center;
+  gap: 20px; /* space between buttons */
   margin-top: 20px;
-  display: none;
-  margin-left: 650px;
+  margin-left: 0; /* remove large left margin */
 }
 
 .correct-option {
@@ -132,7 +132,7 @@ form {
   display: block;
   margin: 20px auto 0 auto;
   .flash-animation {
-    animation: flashEffect 0.5s infinite alternate; /* Adjust duration and iteration */
+    animation: flashEffect 0.5s infinite alternate;
   }
 }
 
@@ -147,6 +147,12 @@ form {
   display: block;
   margin: 20px auto 0 auto;
   .flash-animation {
-    animation: flashEffect 0.5s infinite alternate; /* Adjust duration and iteration */
+    animation: flashEffect 0.5s infinite alternate;
   }
+}
+
+.scoreboard {
+  font-size: 30px;
+  padding: 10px 20px;
+  display: block;
 }

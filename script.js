@@ -36,6 +36,7 @@ const questions = [
   },
 ];
 let currentQuestionIndex = 0;
+let userAnswers = Array(questions.length).fill(null);
 
 function displayQuestion(index) {
   const question = questions[index];
@@ -63,6 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   options.forEach((option, optionIdx) => {
     option.addEventListener("click", function () {
+      userAnswers[currentQuestionIndex] = optionIdx; // Save answer
+
       options.forEach((opt) => {
         opt.disabled = true;
       });
@@ -70,12 +73,15 @@ document.addEventListener("DOMContentLoaded", function () {
       const correctIdx = currentQuestion.correctIndex;
       labels.forEach((label, labelIdx) => {
         const input = document.getElementById(label.getAttribute("for"));
+        label.classList.remove("correct-option", "wrong-option");
         if (labelIdx === correctIdx) {
           label.classList.add("correct-option");
         } else if (input.checked) {
           label.classList.add("wrong-option");
         }
       });
+
+      updateScoreboard();
     });
   });
 });
@@ -111,24 +117,8 @@ function nextQuestion() {
   if (currentQuestionIndex < questions.length - 1) {
     currentQuestionIndex++;
     displayQuestion(currentQuestionIndex);
-
-    // reset options
-    const options = document.querySelectorAll(".input-radio");
-    const labels = document.querySelectorAll(".radio-label");
-
-    options.forEach((opt) => {
-      opt.checked = false;
-      opt.disabled = false;
-    });
-
-    labels.forEach((label) => {
-      label.classList.remove("correct-option", "wrong-option");
-    });
   } else {
     alert("Quiz finished!");
-  }
-  if (correct() || wrong()) {
-    triggerFlashAnimation("myElement");
   }
 }
 
@@ -138,26 +128,17 @@ document.getElementById("back-btn").addEventListener("click", function (e) {
 });
 
 function previousQuestion() {
-  if (currentQuestionIndex < questions.length - 1) {
-    currentQuestionIndex = Math.max(0, currentQuestionIndex - 1);
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
     displayQuestion(currentQuestionIndex);
-
-    // reset options
-    const options = document.querySelectorAll(".input-radio");
-    const labels = document.querySelectorAll(".radio-label");
-
-    options.forEach((opt) => {
-      opt.checked = false;
-      opt.disabled = false;
-    });
-
-    labels.forEach((label) => {
-      label.classList.remove("correct-option", "wrong-option");
-    });
-  } else {
-    alert("Quiz finished!");
   }
-  if (correct() || wrong()) {
-    triggerFlashAnimation("myElement");
-  }
+}
+
+function updateScoreboard() {
+  const score = userAnswers.reduce((acc, answer, idx) => {
+    return acc + (answer === questions[idx].correctIndex ? 1 : 0);
+  }, 0);
+  document.getElementById(
+    "score"
+  ).textContent = `SCORE ${score} / ${questions.length}`;
 }
