@@ -127,4 +127,37 @@ function nextQuestion() {
   } else {
     alert("Quiz finished!");
   }
+  if (correct() || wrong()) {
+    triggerFlashAnimation("myElement");
+  }
+}
+
+document.getElementById("back-btn").addEventListener("click", function (e) {
+  e.preventDefault();
+  previousQuestion();
+});
+
+function previousQuestion() {
+  if (currentQuestionIndex < questions.length - 1) {
+    currentQuestionIndex = Math.max(0, currentQuestionIndex - 1);
+    displayQuestion(currentQuestionIndex);
+
+    // reset options
+    const options = document.querySelectorAll(".input-radio");
+    const labels = document.querySelectorAll(".radio-label");
+
+    options.forEach((opt) => {
+      opt.checked = false;
+      opt.disabled = false;
+    });
+
+    labels.forEach((label) => {
+      label.classList.remove("correct-option", "wrong-option");
+    });
+  } else {
+    alert("Quiz finished!");
+  }
+  if (correct() || wrong()) {
+    triggerFlashAnimation("myElement");
+  }
 }
