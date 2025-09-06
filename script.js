@@ -25,14 +25,20 @@ const questions = [
     correctIndex: 2,
   },
   {
-    question: "What is the capital of Australia?",
-    options: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
-    correctIndex: 2,
+    question:
+      "Which flies a green, white, and orange (in that order) tricolor flag?",
+    options: ["Ireland", "Ivory Coast", "Italy", "India"],
+    correctIndex: 0,
   },
   {
     question: "Which planet is known as the Red Planet?",
     options: ["Earth", "Mars", "Jupiter", "Venus"],
     correctIndex: 1,
+  },
+  {
+    question: "In which country did the cheese Emmental originate?",
+    options: ["Brazil", "France", "Switzerland", "Germany"],
+    correctIndex: 2,
   },
 ];
 
@@ -119,6 +125,14 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       updateScoreboard();
+
+      // If this is the last question AND all answered → show final score
+      if (
+        currentQuestionIndex === questions.length - 1 &&
+        userAnswers.every((ans) => ans !== null)
+      ) {
+        showFinalScore();
+      }
     });
   });
 });
@@ -129,8 +143,6 @@ document.getElementById("next-btn").addEventListener("click", function (e) {
   if (currentQuestionIndex < questions.length - 1) {
     currentQuestionIndex++;
     displayQuestion(currentQuestionIndex);
-  } else {
-    showFinalScore();
   }
 });
 
@@ -143,6 +155,10 @@ document.getElementById("back-btn").addEventListener("click", function (e) {
 });
 
 // -------------------- SCOREBOARD --------------------
+
+const scoreElement = document.getElementById("score");
+scoreElement.textContent = `SCORE 0 / ${questions.length}`;
+
 function updateScoreboard() {
   const score = userAnswers.reduce((acc, answer, idx) => {
     return acc + (answer === questions[idx].correctIndex ? 1 : 0);
@@ -152,6 +168,7 @@ function updateScoreboard() {
   ).textContent = `SCORE ${score} / ${questions.length}`;
 }
 
+// -------------------- FINAL SCORE SCREEN --------------------
 function showFinalScore() {
   const score = userAnswers.reduce((acc, answer, idx) => {
     return acc + (answer === questions[idx].correctIndex ? 1 : 0);
@@ -159,7 +176,7 @@ function showFinalScore() {
 
   const main = document.querySelector("main");
   main.innerHTML = `
-    <div class="final-score">
+    <div class="finalScore">
       <h2>Quiz Finished!</h2>
       <p>Your final score is:</p>
       <h3>${score} / ${questions.length}</h3>

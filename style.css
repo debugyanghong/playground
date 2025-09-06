@@ -156,3 +156,23 @@ form {
   padding: 10px 20px;
   display: block;
 }
+
+.finalScore {
+  text-align: center;
+  font-size: 40px;
+}
+
+#restart-btn {
+  background-color: #4a4a6a;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  display: block;
+  margin: 20px auto 0 auto;
+  .flash-animation {
+    animation: flashEffect 0.5s infinite alternate;
+  }
+}
