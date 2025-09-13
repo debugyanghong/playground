@@ -35,11 +35,6 @@ const questions = [
     options: ["Earth", "Mars", "Jupiter", "Venus"],
     correctIndex: 1,
   },
-  {
-    question: "In which country did the cheese Emmental originate?",
-    options: ["Brazil", "France", "Switzerland", "Germany"],
-    correctIndex: 2,
-  },
 ];
 
 let currentQuestionIndex = 0;
@@ -48,6 +43,20 @@ let userAnswers = Array(questions.length).fill(null);
 // -------------------- DISPLAY QUESTION --------------------
 function displayQuestion(index) {
   const question = questions[index];
+
+  const backBtn = document.getElementById("back-btn");
+  if (index === 0) {
+    backBtn.style.visibility = "hidden";
+  } else {
+    backBtn.style.visibility = "visible";
+  }
+
+  const nextBtn = document.getElementById("next-btn");
+  if (index === questions.length - 1) {
+    nextBtn.style.visibility = "hidden";
+  } else {
+    nextBtn.style.visibility = "visible";
+  }
 
   // update question counter
   document.querySelector(
@@ -127,10 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
       updateScoreboard();
 
       // If this is the last question AND all answered → show final score
-      if (
-        currentQuestionIndex === questions.length - 1 &&
-        userAnswers.every((ans) => ans !== null)
-      ) {
+      if (userAnswers.every((ans) => ans !== null)) {
         showFinalScore();
       }
     });
@@ -181,16 +187,38 @@ function showFinalScore() {
       <p>Your final score is:</p>
       <h3>${score} / ${questions.length}</h3>
       <button id="restart-btn">Restart Quiz</button>
+      <button id="view-answers-btn">View Correct Answers</button>
+      <button id="go-back-btn">Go Back to Previous Quiz</button>
     </div>
   `;
 
   document.getElementById("restart-btn").addEventListener("click", restartQuiz);
-}
+  document.getElementById("view-answers-btn").addEventListener("click", () => {
+    showCorrectAnswers();
+  });
 
-function restartQuiz() {
-  currentQuestionIndex = 0;
-  userAnswers = Array(questions.length).fill(null);
-  location.reload(); // simple reset
+  function showCorrectAnswers() {
+    const main = document.querySelector("main");
+    let answersHTML = `<div class="correct-answers"><h2>Correct Answers</h2><ul>`;
+    questions.forEach((q, idx) => {
+      answersHTML += `<li><strong>Q${idx + 1}:</strong> ${
+        q.question
+      }<br/><em>Correct Answer:</em> ${q.options[q.correctIndex]}</li>`;
+    });
+    answersHTML += `</ul><button id="restart-btn">Restart Quiz</button></div>`;
+
+    main.innerHTML = answersHTML;
+
+    document
+      .getElementById("restart-btn")
+      .addEventListener("click", restartQuiz);
+  }
+
+  function restartQuiz() {
+    currentQuestionIndex = 0;
+    userAnswers = Array(questions.length).fill(null);
+    location.reload(); // simple reset
+  }
 }
 
 // -------------------- SOUNDS --------------------
