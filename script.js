@@ -152,13 +152,13 @@ document.getElementById("next-btn").addEventListener("click", function (e) {
   }
 });
 
-document.getElementById("back-btn").addEventListener("click", function (e) {
-  e.preventDefault();
+function backBtn(ev) {
+  ev.preventDefault();
   if (currentQuestionIndex > 0) {
     currentQuestionIndex--;
     displayQuestion(currentQuestionIndex);
   }
-});
+}
 
 // -------------------- SCOREBOARD --------------------
 
@@ -188,7 +188,7 @@ function showFinalScore() {
       <h3>${score} / ${questions.length}</h3>
       <button id="restart-btn">Restart Quiz</button>
       <button id="view-answers-btn">View Correct Answers</button>
-      <button id="go-back-btn">Go Back to Previous Quiz</button>
+      <button class="back-button" onClick="backBtn(event)">Go Back to Previous Quiz</button>
     </div>
   `;
 
