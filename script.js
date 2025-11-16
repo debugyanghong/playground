@@ -35,10 +35,16 @@ const questions = [
     options: ["Earth", "Mars", "Jupiter", "Venus"],
     correctIndex: 1,
   },
+  {
+    question: "What is the capital of Japan?",
+    options: ["Seoul", "Beijing", "Tokyo", "Bangkok"],
+    correctIndex: 2,
+  },
 ];
 
 let currentQuestionIndex = 0;
 let userAnswers = Array(questions.length).fill(null);
+let originalQuizHTML = null;
 
 // -------------------- DISPLAY QUESTION --------------------
 function displayQuestion(index) {
@@ -104,6 +110,7 @@ function displayQuestion(index) {
 
 // -------------------- HANDLE ANSWERS --------------------
 document.addEventListener("DOMContentLoaded", function () {
+  originalQuizHTML = document.querySelector("main").innerHTML;
   displayQuestion(currentQuestionIndex);
 
   const options = document.querySelectorAll(".input-radio");
@@ -152,13 +159,13 @@ document.getElementById("next-btn").addEventListener("click", function (e) {
   }
 });
 
-function backBtn(ev) {
+document.getElementById("back-btn").onclick = function (ev) {
   ev.preventDefault();
   if (currentQuestionIndex > 0) {
     currentQuestionIndex--;
     displayQuestion(currentQuestionIndex);
   }
-}
+};
 
 // -------------------- SCOREBOARD --------------------
 
@@ -188,15 +195,20 @@ function showFinalScore() {
       <h3>${score} / ${questions.length}</h3>
       <button id="restart-btn">Restart Quiz</button>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <button id="view-answers-btn">View Correct Answers</button>
       <button class="back-button" onClick="backBtn(event)">Go Back to Previous Quiz</button>
 =======
       <button class="back-button">Go Back to Previous Quiz</button>
 >>>>>>> a6510e8 (test 1 for original copy of fnail score screen button)
+=======
+      <button id="back-to-quiz-btn" class="back-button">Go Back to Previous Quiz</button>
+>>>>>>> c30f9fb (done the history button in the finalscorescreen)
     </div>
   `;
 
   document.getElementById("restart-btn").addEventListener("click", restartQuiz);
+<<<<<<< HEAD
 <<<<<<< HEAD
   document.getElementById("view-answers-btn").addEventListener("click", () => {
     showCorrectAnswers();
@@ -221,6 +233,17 @@ function showFinalScore() {
 =======
   document.getElementById("back-button").addEventListener("click", backBtn);
 >>>>>>> a6510e8 (test 1 for original copy of fnail score screen button)
+=======
+  document
+    .getElementById("back-to-quiz-btn")
+    .addEventListener("click", function (ev) {
+      ev.preventDefault();
+      main.innerHTML = originalQuizHTML;
+      displayQuestion(currentQuestionIndex); // Show the last question
+      updateScoreboard(); // <-- Add this line to sync the score
+      reattachEventListeners();
+    });
+>>>>>>> c30f9fb (done the history button in the finalscorescreen)
 
   function restartQuiz() {
     currentQuestionIndex = 0;
@@ -238,4 +261,50 @@ function correct() {
 function wrong() {
   const soundEffect = new Audio("/failer.mp3");
   soundEffect.play().catch(() => {});
+}
+
+// -------------------- REATTACH EVENT LISTENERS --------------------
+function reattachEventListeners() {
+  const options = document.querySelectorAll(".input-radio");
+  const labels = document.querySelectorAll(".radio-label");
+
+  options.forEach((option, optionIdx) => {
+    option.addEventListener("click", function () {
+      userAnswers[currentQuestionIndex] = optionIdx;
+      options.forEach((opt) => (opt.disabled = true));
+      const currentQuestion = questions[currentQuestionIndex];
+      const correctIdx = currentQuestion.correctIndex;
+      labels.forEach((label, labelIdx) => {
+        const input = document.getElementById(label.getAttribute("for"));
+        label.classList.remove("correct-option", "wrong-option");
+        if (labelIdx === correctIdx) {
+          label.classList.add("correct-option");
+          if (optionIdx === correctIdx) correct();
+        } else if (input.checked) {
+          label.classList.add("wrong-option");
+          if (optionIdx !== correctIdx) wrong();
+        }
+      });
+      updateScoreboard();
+      if (userAnswers.every((ans) => ans !== null)) {
+        showFinalScore();
+      }
+    });
+  });
+
+  document.getElementById("next-btn").addEventListener("click", function (e) {
+    e.preventDefault();
+    if (currentQuestionIndex < questions.length - 1) {
+      currentQuestionIndex++;
+      displayQuestion(currentQuestionIndex);
+    }
+  });
+
+  document.getElementById("back-btn").addEventListener("click", function (ev) {
+    ev.preventDefault();
+    if (currentQuestionIndex > 0) {
+      currentQuestionIndex--;
+      displayQuestion(currentQuestionIndex);
+    }
+  });
 }
