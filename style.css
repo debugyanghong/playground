@@ -176,6 +176,7 @@ form {
     animation: flashEffect 0.5s infinite alternate;
   }
 }
+<<<<<<< HEAD
 
 #view-answers-btn {
   background-color: #4a4a6a;
@@ -191,3 +192,5 @@ form {
     animation: flashEffect 0.5s infinite alternate;
   }
 }
+=======
+>>>>>>> a6510e8 (test 1 for original copy of fnail score screen button)

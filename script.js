@@ -187,12 +187,17 @@ function showFinalScore() {
       <p>Your final score is:</p>
       <h3>${score} / ${questions.length}</h3>
       <button id="restart-btn">Restart Quiz</button>
+<<<<<<< HEAD
       <button id="view-answers-btn">View Correct Answers</button>
       <button class="back-button" onClick="backBtn(event)">Go Back to Previous Quiz</button>
+=======
+      <button class="back-button">Go Back to Previous Quiz</button>
+>>>>>>> a6510e8 (test 1 for original copy of fnail score screen button)
     </div>
   `;
 
   document.getElementById("restart-btn").addEventListener("click", restartQuiz);
+<<<<<<< HEAD
   document.getElementById("view-answers-btn").addEventListener("click", () => {
     showCorrectAnswers();
   });
@@ -213,6 +218,9 @@ function showFinalScore() {
       .getElementById("restart-btn")
       .addEventListener("click", restartQuiz);
   }
+=======
+  document.getElementById("back-button").addEventListener("click", backBtn);
+>>>>>>> a6510e8 (test 1 for original copy of fnail score screen button)
 
   function restartQuiz() {
     currentQuestionIndex = 0;
