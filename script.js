@@ -24,33 +24,31 @@ const questions = [
     options: ["Brazil", "France", "Switzerland", "Germany"],
     correctIndex: 2,
   },
-  {
-    question:
-      "Which flies a green, white, and orange (in that order) tricolor flag?",
-    options: ["Ireland", "Ivory Coast", "Italy", "India"],
-    correctIndex: 0,
-  },
-  {
-    question: "Which planet is known as the Red Planet?",
-    options: ["Earth", "Mars", "Jupiter", "Venus"],
-    correctIndex: 1,
-  },
-  {
-    question: "What is the capital of Japan?",
-    options: ["Seoul", "Beijing", "Tokyo", "Bangkok"],
-    correctIndex: 2,
-  },
+  // {
+  //   question:
+  //     "Which flies a green, white, and orange (in that order) tricolor flag?",
+  //   options: ["Ireland", "Ivory Coast", "Italy", "India"],
+  //   correctIndex: 0,
+  // },
+  // {
+  //   question: "Which planet is known as the Red Planet?",
+  //   options: ["Earth", "Mars", "Jupiter", "Venus"],
+  //   correctIndex: 1,
+  // },
+  // {
+  //   question: "What is the capital of Japan?",
+  //   options: ["Seoul", "Beijing", "Tokyo", "Bangkok"],
+  //   correctIndex: 2,
+  // },
 ];
-
+let lastQuestionIndex = questions.length - 1;
 let currentQuestionIndex = 0;
 let userAnswers = Array(questions.length).fill(null);
 let originalQuizHTML = null;
-
+const backBtn = document.getElementById("back-btn");
 // -------------------- DISPLAY QUESTION --------------------
 function displayQuestion(index) {
   const question = questions[index];
-
-  const backBtn = document.getElementById("back-btn");
   if (index === 0) {
     backBtn.style.visibility = "hidden";
   } else {
@@ -151,21 +149,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // -------------------- NAVIGATION --------------------
-document.getElementById("next-btn").addEventListener("click", function (e) {
+function clickNextButton(e) {
   e.preventDefault();
   if (currentQuestionIndex < questions.length - 1) {
     currentQuestionIndex++;
     displayQuestion(currentQuestionIndex);
   }
-});
+}
 
-document.getElementById("back-btn").onclick = function (ev) {
+function clickBackButton(ev) {
   ev.preventDefault();
   if (currentQuestionIndex > 0) {
     currentQuestionIndex--;
     displayQuestion(currentQuestionIndex);
   }
-};
+}
 
 // -------------------- SCOREBOARD --------------------
 
@@ -194,56 +192,21 @@ function showFinalScore() {
       <p>Your final score is:</p>
       <h3>${score} / ${questions.length}</h3>
       <button id="restart-btn">Restart Quiz</button>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <button id="view-answers-btn">View Correct Answers</button>
-      <button class="back-button" onClick="backBtn(event)">Go Back to Previous Quiz</button>
-=======
-      <button class="back-button">Go Back to Previous Quiz</button>
->>>>>>> a6510e8 (test 1 for original copy of fnail score screen button)
-=======
-      <button id="back-to-quiz-btn" class="back-button">Go Back to Previous Quiz</button>
->>>>>>> c30f9fb (done the history button in the finalscorescreen)
-    </div>
+      <button id="back-to-quiz-btn" class="back-button" onClick="">Go Back to Previous Quiz</button>
   `;
 
   document.getElementById("restart-btn").addEventListener("click", restartQuiz);
-<<<<<<< HEAD
-<<<<<<< HEAD
-  document.getElementById("view-answers-btn").addEventListener("click", () => {
-    showCorrectAnswers();
-  });
 
-  function showCorrectAnswers() {
-    const main = document.querySelector("main");
-    let answersHTML = `<div class="correct-answers"><h2>Correct Answers</h2><ul>`;
-    questions.forEach((q, idx) => {
-      answersHTML += `<li><strong>Q${idx + 1}:</strong> ${
-        q.question
-      }<br/><em>Correct Answer:</em> ${q.options[q.correctIndex]}</li>`;
-    });
-    answersHTML += `</ul><button id="restart-btn">Restart Quiz</button></div>`;
-
-    main.innerHTML = answersHTML;
-
-    document
-      .getElementById("restart-btn")
-      .addEventListener("click", restartQuiz);
-  }
-=======
-  document.getElementById("back-button").addEventListener("click", backBtn);
->>>>>>> a6510e8 (test 1 for original copy of fnail score screen button)
-=======
   document
     .getElementById("back-to-quiz-btn")
     .addEventListener("click", function (ev) {
       ev.preventDefault();
       main.innerHTML = originalQuizHTML;
-      displayQuestion(currentQuestionIndex); // Show the last question
+      currentQuestionIndex = lastQuestionIndex;
+      displayQuestion(lastQuestionIndex); // Show the last question
       updateScoreboard(); // <-- Add this line to sync the score
       reattachEventListeners();
     });
->>>>>>> c30f9fb (done the history button in the finalscorescreen)
 
   function restartQuiz() {
     currentQuestionIndex = 0;
@@ -290,21 +253,5 @@ function reattachEventListeners() {
         showFinalScore();
       }
     });
-  });
-
-  document.getElementById("next-btn").addEventListener("click", function (e) {
-    e.preventDefault();
-    if (currentQuestionIndex < questions.length - 1) {
-      currentQuestionIndex++;
-      displayQuestion(currentQuestionIndex);
-    }
-  });
-
-  document.getElementById("back-btn").addEventListener("click", function (ev) {
-    ev.preventDefault();
-    if (currentQuestionIndex > 0) {
-      currentQuestionIndex--;
-      displayQuestion(currentQuestionIndex);
-    }
   });
 }
